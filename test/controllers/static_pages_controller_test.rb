@@ -10,4 +10,10 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     get static_pages_help_url
     assert_response :success
   end
+
+  test "should get about" do
+    # getするurlはヘルパーメソッドを書く
+    get static_pages_about_url
+    assert_response :success
+  end
 end
