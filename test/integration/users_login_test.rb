@@ -5,6 +5,7 @@ class UsersLogin < ActionDispatch::IntegrationTest
   def setup
     @user = users(:michael)
   end
+
 end
 
 class InvalidPasswordTest < UsersLogin
