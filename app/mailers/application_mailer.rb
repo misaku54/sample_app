@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  # from:送信先のメールアドレス　全体的な設定ができる。
-  default from: "eisei0504@outlook.jp"
+  # from:送信元のメールアドレス　全体的な設定ができる。
+  default from: "ponpon@look.jp"
   layout "mailer"
 end
