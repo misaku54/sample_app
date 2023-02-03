@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   # 記憶トークンに対応する仮属性を用意する。
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
 
   # コールバック
   before_save   :downcase_email
