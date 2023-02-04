@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :microposts
+  has_many :microposts, dependent: :destroy
   # 記憶トークンに対応する仮属性を用意する。
   attr_accessor :remember_token, :activation_token, :reset_token
 
