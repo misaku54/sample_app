@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # @micropostsインスタンス変数をshowアクションに追加する
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def new
