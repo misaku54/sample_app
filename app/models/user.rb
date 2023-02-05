@@ -1,5 +1,11 @@
 class User < ApplicationRecord
+  # 外部キーはデフォルトで<class>_idを検索しようとする。
+  # class_nameは探索するモデル名を指定できる。foreign_keyは探索に使う外部キーを指定できる。
+  # オプションを設定せず、デフォルトのままだとactive_relationshipモデルのuser_idを検索しようとする。
   has_many :microposts, dependent: :destroy
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
   # 記憶トークンに対応する仮属性を用意する。
   attr_accessor :remember_token, :activation_token, :reset_token
 
