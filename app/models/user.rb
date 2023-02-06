@@ -101,6 +101,24 @@ class User < ApplicationRecord
     Micropost.where("user_id = ?", id)
   end
 
+  # ユーザーをフォローする。
+  def follow(other_user)
+    # フォローしているユーザーオブジェクト群に引数で渡したユーザーオブジェクトを追加する。
+    # 注意点　followingで作成したオブジェクト群は配列オブジェクトではない。
+    following << other_user  unless self == other_user
+  end
+
+  # ユーザーをフォロー解除する。
+  def unfollow(other_user)
+    # フォローしているユーザーの中から引数で渡されたユーザーオブジェクトを見つけて削除する。
+    following.delete(other_user)
+  end
+
+  # 引数で渡されたユーザーをフォローしているか？true falseを返す。
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
   private
 
     # メールアドレスをすべて小文字にする
