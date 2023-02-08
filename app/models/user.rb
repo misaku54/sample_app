@@ -103,7 +103,12 @@ class User < ApplicationRecord
 
   # ログインしているユーザーのマイクロポストをすべて取得
   def feed
-    Micropost.where("user_id = ?", id)
+    # Micropost.where("user_id IN (?) OR user_id = ?", following_ids, self.id)
+
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
   end
 
   # ユーザーをフォローする。
@@ -115,7 +120,6 @@ class User < ApplicationRecord
 
   # ユーザーをフォロー解除する。
   def unfollow(other_user)
-    # フォローしているユーザーの中から引数で渡されたユーザーオブジェクトを見つけて削除する。
     following.delete(other_user)
   end
 
